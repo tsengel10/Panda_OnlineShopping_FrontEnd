@@ -1,0 +1,102 @@
+<ui-view></ui-view>
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <p><strong>{{ vm.adminActionTitle }}</strong></p>
+        <md-button ng-click="vm.addNewVendor()">
+            <md-icon class="mdi mdi-plus-circle"></md-icon>Add new Vendor
+        </md-button>
+        <md-button ng-click="showFilter = true">
+            <md-iocn class="mdi mdi-magnify"></md-icon>Filters
+        </md-button>
+    </div>
+</md-toolbar>
+<div class="filters" layout="row" layout-align="center center" ng-show="showFilter">
+    <md-input-container style="margin-top:42px;">
+        <label>Enter search term</label>
+        <input type="text" ng-model="vendorsFilter" />
+    </md-input-container>
+    <md-input-container>
+        <md-button class="md-warn" ng-click="vendorsFilter = '';">Clear</md-button>
+    </md-input-container>
+</div>
+<md-content class="md-padding">
+    <md-content layout="row" layout-wrap>
+        <md-card class="vendor" flex="22" ng-repeat="vendor in vm.vendors | filter: vendorsFilter">
+            <md-card-content>
+                <div class="vendor-info" ng-show="!showSimple">
+                    <img ng-src="{{ vendor.image_link }}" width="150">
+                    <p>
+                        Vendor ID: {{ vendor.userid }}
+                    </p>
+                    <p>Vendor name:
+                        <span class="md-title">{{ vendor.username }}</span></p>
+                    <p>Vendor code:
+                        <span class="md-title">{{ vendor.vendorCode }}</span></p>
+                </div>
+                <div class="vendor-contact" ng-show="showSimple">
+                    <img ng-src="{{ vendor.image_link }}" width="150">
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="General">
+                            <p>
+                                <md-icon class="mdi mdi-account"></md-icon>
+                                Credential info
+                                <div style="padding-left:50px;">
+                                    <p>Username: {{ vendor.username }}</p>
+                                    <p>Password: {{ vendor.password }}</p>
+                                </div>
+                            </p>
+                            <p>
+                                <md-icon class="mdi mdi-account-star-variant"></md-icon>Info
+                                <div style="padding-left:50px;">
+                                    <p>Name: {{ vendor.vendorName }}</p>
+                                    <p>Code: {{ vendor.vendorCode }}</p>
+                                    <p>Type: Vendor</p>
+                                </div>
+                            </p>
+                            <p>
+                                <md-icon class="mdi mdi-phone"></md-icon>Contact info
+                                <div style="padding-left:50px;">
+                                    <p>Email: {{ vendor.email }}</p>
+                                    <p>Phone: {{ vendor.phone }}</p>
+                                </div>
+                            </p>
+                        </md-tab>
+                        <md-tab label="Address(s)">
+                            <p>
+                                Address(s) info
+                            </p>
+                            <md-content ng-repeat="address in vendor.addresses track by $index">
+                                <p>
+                                    <md-icon class="mdi mdi-truck"></md-icon>
+                                    {{ $index+1 }}.
+                                    <div style="padding-left:50px;">
+                                        <p>Address 1: {{ address.address_1 }}</p>
+                                        <p>Address 2: {{ address.address_2 }}</p>
+                                        <p>City: {{ address.city }}</p>
+                                        <p>State: {{ address.state }}</p>
+                                        <p>Zip: {{ address.zip }}</p>
+                                        <p>Type: {{ address.address_type }}</p>
+                                    </div>
+                                </p>
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </div>
+                <div layout="row">
+                    <md-button class="md-primary" ng-click="showSimple = true" ng-show="!showSimple">Details</md-button>
+                    <md-button class="md-primary" ng-click="showSimple = false" ng-show="showSimple">Simple</md-button>
+                    <md-button class="md-warn" ng-click="showActions = true" ng-show="!showActions">Actions</md-button>
+                    <md-button class="md-warn" ng-click="showActions = false" ng-show="showActions">Close</md-button>
+                </div>
+                <div class="vendor-vendor" ng-if="showActions">
+                    <h3>Action(s)</h3>
+                    <div layout="row">
+                        <md-button class="md-warn" ng-click="vm.addVendorAddress(vendor)">Add address</md-button>
+                        <md-button class="md-warn" ng-click="vm.editVendor(vendor)">Edit</md-button>
+                        <md-button class="md-warn" ng-click="vm.deleteVendor($event, vendor)">Delete</md-button>
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+    </md-content>
+</md-content>

@@ -1,0 +1,54 @@
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-open="vm.sideNavOpen">
+    <md-toolbar>
+        <h1 class="md-toolbar-tools">Add a Vendor</h1>
+    </md-toolbar>
+    <md-content layout-padding>
+        <form>
+            <p>Credential:
+                <div style="padding-left: 50px">
+                    <md-input-container>
+                        <label for="username">Username</label>
+                        <input type="text" id="username" ng-model="vm.vendor.username" />
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="password">Password</label>
+                        <input type="text" id="password" ng-model="vm.vendor.password" />
+                    </md-input-container>
+                </div>
+            </p>
+            <p>Vendor info:
+                <div style="padding-left: 50px">
+                    <md-input-container>
+                        <label for="vname">Vendor Name</label>
+                        <input type="text" id="vname" ng-model="vm.vendor.vendorName" />
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="vcode">Vendor Code</label>
+                        <input type="text" id="vcode" ng-model="vm.vendor.vendorCode" />
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="img_link">Image link</label>
+                        <input type="text" id="img_link" ng-model="vm.vendor.image_link" />
+                    </md-input-container>
+                </div>
+            </p>
+            <p>Contact info:
+                <div style="padding-left: 50px">
+                    <md-input-container>
+                        <label for="email">Email</label>
+                        <input type="text" id="email" ng-model="vm.vendor.email" />
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="phone">Phone</label>
+                        <input type="text" id="phone" ng-model="vm.vendor.phone" />
+                    </md-input-container>
+                </div>
+            </p>
+            <div>
+                <md-button class="md-primary" ng-click="vm.saveVendor(vm.vendor)">Save</md-button>
+                <md-button class="md-warn" ng-click="vm.closeSideBar()">Cancel</md-button>
+                <pre>{{ vm.vendor | json }}</pre>
+            </div>
+        </form>
+    </md-content>
+</md-sidenav>

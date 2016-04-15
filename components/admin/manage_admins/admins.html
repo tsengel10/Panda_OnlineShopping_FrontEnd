@@ -1,0 +1,70 @@
+<ui-view></ui-view>
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <p><strong>{{ vm.adminActionTitle }}</strong></p>
+        <md-button ng-click="vm.addNewAdmin()">
+            <md-icon class="mdi mdi-plus-circle"></md-icon>Add new Admin
+        </md-button>
+        <md-button ng-click="showFilter = true">
+            <md-iocn class="mdi mdi-magnify"></md-icon>Filters
+        </md-button>
+    </div>
+</md-toolbar>
+<div class="filters" layout="row" layout-align="center center" ng-show="showFilter">
+    <md-input-container style="margin-top:42px;">
+        <label>Enter search term</label>
+        <input type="text" ng-model="adminsFilter" />
+    </md-input-container>
+    <md-input-container>
+        <md-button class="md-warn" ng-click="adminsFilter = '';">Clear</md-button>
+    </md-input-container>
+</div>
+<md-content class="md-padding">
+    <md-content layout="row" layout-wrap>
+        <md-card class="admin" flex="22" ng-repeat="admin in vm.admins | filter: adminsFilter">
+            <md-card-content>
+                <div class="admin-info" ng-show="!showSimple">
+                    <p>
+                        Admin ID: {{ admin.userid }}
+                    </p>
+                    <p>User name:
+                        <span class="md-title">{{ admin.username }}</span></p>
+                </div>
+                <div class="admin-contact" ng-show="showSimple">
+                    <p>
+                        <md-icon class="mdi mdi-account-circle"></md-icon>
+                        {{ admin.username }}
+                    </p>
+                    <p>
+                        <md-icon class="mdi mdi-account-key"></md-icon>
+                        {{ admin.password }}
+                    </p>
+                    <p>
+                        <md-icon class="mdi mdi-email"></md-icon>
+                        {{ admin.email }}
+                    </p>
+                    <p>
+                        <md-icon class="mdi mdi-more"></md-icon>
+                        {{ admin.userid }}
+                    </p>
+                    <p>
+                        <md-icon class="mdi mdi-account-star-variant"></md-icon>
+                        Admin
+                    </p>
+                </div>
+                <div layout="row">
+                    <md-button class="md-primary" ng-click="showSimple = true" ng-show="!showSimple">Details</md-button>
+                    <md-button class="md-primary" ng-click="showSimple = false" ng-show="showSimple">Simple</md-button>
+                    <md-button class="md-warn" ng-click="showActions = true" ng-show="!showActions">Actions</md-button>
+                    <md-button class="md-warn" ng-click="showActions = false" ng-show="showActions">Close</md-button>
+                </div>
+                <div class="admin-admin" ng-if="showActions">
+                    <h3>Action(s)</h3>
+                    <div layout="row">
+                        <md-button class="md-warn" ng-click="vm.editAdmin(admin)">Edit</md-button>
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+    </md-content>
+</md-content>

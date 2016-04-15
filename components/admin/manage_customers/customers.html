@@ -1,0 +1,102 @@
+<ui-view></ui-view>
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <p><strong>{{ vm.adminActionTitle }}</strong></p>
+        <md-button ng-click="vm.addNewCustomer()">
+            <md-icon class="mdi mdi-plus-circle"></md-icon>Add new Customer
+        </md-button>
+        <md-button ng-click="showFilter = true">
+            <md-iocn class="mdi mdi-magnify"></md-icon>Filters
+        </md-button>
+    </div>
+</md-toolbar>
+<div class="filters" layout="row" layout-align="center center" ng-show="showFilter">
+    <md-input-container style="margin-top:42px;">
+        <label>Enter search term</label>
+        <input type="text" ng-model="customersFilter" />
+    </md-input-container>
+    <md-input-container>
+        <md-button class="md-warn" ng-click="customersFilter = '';">Clear</md-button>
+    </md-input-container>
+</div>
+<md-content class="md-padding">
+    <md-content layout="row" layout-wrap>
+        <md-card class="customer" flex="22" ng-repeat="customer in vm.customers | filter: customersFilter">
+            <md-card-content>
+                <div class="customer-info" ng-show="!showSimple">
+                    <img ng-src="{{ customer.image_link }}" width="150">
+                    <p>
+                        Customer ID: {{ customer.userid }}
+                    </p>
+                    <p>Name:
+                        <span class="md-title">{{ customer.firstName + ' '+ customer.lastName }} </span></p>
+                    <p>Email:
+                        <span class="md-title">{{ customer.email }}</span></p>
+                </div>
+                <div class="customer-contact" ng-show="showSimple">
+                    <img ng-src="{{ customer.image_link }}" width="150">
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="General">
+                            <p>
+                                <md-icon class="mdi mdi-account"></md-icon>
+                                Credential info
+                                <div style="padding-left:50px;">
+                                    <p>Username: {{ customer.username }}</p>
+                                    <p>Password: {{ customer.password }}</p>
+                                </div>
+                            </p>
+                            <p>
+                                <md-icon class="mdi mdi-account-star-variant"></md-icon>Info
+                                <div style="padding-left:50px;">
+                                    <p>First Name: {{ customer.firstName }}</p>
+                                    <p>Last Name: {{ customer.lastName }}</p>
+                                    <p>Type: Vendor</p>
+                                </div>
+                            </p>
+                            <p>
+                                <md-icon class="mdi mdi-phone"></md-icon>Contact info
+                                <div style="padding-left:50px;">
+                                    <p>Email: {{ customer.email }}</p>
+                                    <p>Phone: {{ customer.phone }}</p>
+                                </div>
+                            </p>
+                        </md-tab>
+                        <md-tab label="Address(s)">
+                            <p>
+                                Address(s) info
+                            </p>
+                            <md-content ng-repeat="address in customer.addresses track by $index">
+                                <p>
+                                    <md-icon class="mdi mdi-truck"></md-icon>
+                                    {{ $index+1 }}.
+                                    <div style="padding-left:50px;">
+                                        <p>Address 1: {{ address.address_1 }}</p>
+                                        <p>Address 2: {{ address.address_2 }}</p>
+                                        <p>City: {{ address.city }}</p>
+                                        <p>State: {{ address.state }}</p>
+                                        <p>Zip: {{ address.zip }}</p>
+                                        <p>Type: {{ address.address_type }}</p>
+                                    </div>
+                                </p>
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </div>
+                <div layout="row">
+                    <md-button class="md-primary" ng-click="showSimple = true" ng-show="!showSimple">Details</md-button>
+                    <md-button class="md-primary" ng-click="showSimple = false" ng-show="showSimple">Simple</md-button>
+                    <md-button class="md-warn" ng-click="showActions = true" ng-show="!showActions">Actions</md-button>
+                    <md-button class="md-warn" ng-click="showActions = false" ng-show="showActions">Close</md-button>
+                </div>
+                <div class="vendor-vendor" ng-if="showActions">
+                    <h3>Action(s)</h3>
+                    <div layout="row">
+                        <md-button class="md-warn" ng-click="vm.addCustomerAddress(customer)">Add address</md-button>
+                        <md-button class="md-warn" ng-click="vm.editCustomer(customer)">Edit</md-button>
+                        <md-button class="md-warn" ng-click="vm.deleteCustomer($event, customer)">Delete</md-button>
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+    </md-content>
+</md-content>

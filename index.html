@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="panda">
+
+<head>
+    <title>Panda</title>
+    <link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
+    <link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css" media="all">
+    <link rel="stylesheet" href="css/styles.css" media="all">
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+    <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="node_modules/angular-aria/angular-aria.min.js"></script>
+    <script src="node_modules/angular-material/angular-material.min.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.10.0/lodash.min.js"></script>
+    <script src="app.js"></script>
+    <script src="components/admin/admin_factory.js"></script>
+    <script src="components/admin/admin_actions_controller.js"></script>
+    <!-- ADMIN - MANAGE ADMINS INCLUDES-->
+    <script src="components/admin/manage_admins/admins_controller.js"></script>
+    <script src="components/admin/manage_admins/new/admin_new_controller.js"></script>
+    <script src="components/admin/manage_admins/edit/admin_edit_controller.js"></script>
+    <!-- ADMIN - MANAGE VENDORS INCLUDES-->
+    <script src="components/admin/manage_vendors/vendors_controller.js"></script>
+    <script src="components/admin/manage_vendors/new/vendor_new_controller.js"></script>
+    <script src="components/admin/manage_vendors/new_address/vendor_new_address_controller.js"></script>
+    <script src="components/admin/manage_vendors/edit/vendor_edit_controller.js"></script>
+    <!-- ADMIN - MANAGE CUSTOMERS INCLUDES-->
+    <script src="components/admin/manage_customers/customers_controller.js"></script>
+    <script src="components/admin/manage_customers/new/customer_new_controller.js"></script>
+    <script src="components/admin/manage_customers/new_address/customer_new_address_controller.js"></script>
+    <script src="components/admin/manage_customers/edit/customer_edit_controller.js"></script>
+</head>
+
+<body>
+    <md-button href="#/admin">Go get admin page</md-button>
+    <ui-view></ui-view>
+</body>
+
+</html>

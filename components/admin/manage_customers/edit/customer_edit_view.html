@@ -1,0 +1,50 @@
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-open="vm.sideNavOpen">
+    <md-toolbar>
+        <h1 class="md-toolbar-tools">Edit Customer</h1>
+    </md-toolbar>
+    <md-content layout-padding>
+        <form>
+            <p>Credential:
+                <div style="padding-left: 50px">
+                    <md-input-container>
+                        <label for="username">Username</label>
+                        <input type="text" id="username" ng-model="vm.customer.username" />
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="password">Password</label>
+                        <input type="text" id="password" ng-model="vm.customer.password" />
+                    </md-input-container>
+                </div>
+            </p>
+            <p>Customer info:
+                <div style="padding-left: 50px">
+                    <md-input-container>
+                        <label for="fname">First Name</label>
+                        <input type="text" id="fname" ng-model="vm.customer.firstName" />
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="lname">Last Name</label>
+                        <input type="text" id="lname" ng-model="vm.customer.lastName" />
+                    </md-input-container>
+                </div>
+            </p>
+            <p>Contact info:
+                <div style="padding-left: 50px">
+                    <md-input-container>
+                        <label for="email">Email</label>
+                        <input type="text" id="email" ng-model="vm.customer.email" />
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="phone">Phone</label>
+                        <input type="text" id="phone" ng-model="vm.customer.phone" />
+                    </md-input-container>
+                </div>
+            </p>
+            <div>
+                <md-button class="md-primary" ng-click="vm.saveEditCustomer(vm.customer)">Save Edit</md-button>
+                <md-button class="md-warn" ng-click="vm.closeSideBar()">Cancel</md-button>
+                <pre>{{ vm.vendor | json }}</pre>
+            </div>
+        </form>
+    </md-content>
+</md-sidenav>
