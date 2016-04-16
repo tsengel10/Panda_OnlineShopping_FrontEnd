@@ -1,6 +1,13 @@
 angular.module("panda")
-    .controller("adminActionsController", ["$state", "$scope", "$http", "$mdSidenav", "$mdDialog", "$mdToast", "adminFactory",
-        function($state, $scope, $http, $mdSidenav, $mdDialog, $mdToast, adminFactory) {
+    .controller("adminActionsController", ["$rootScope", "$state", "$scope", "$http", "$mdSidenav", "$mdDialog", "$mdToast", "adminFactory",
+        function($rootScope, $state, $scope, $http, $mdSidenav, $mdDialog, $mdToast, adminFactory) {
+
+
+            if (!$rootScope.userObj || $rootScope.userObj.usertype != 99) {
+                $state.go("/", {
+                    redirect_message: "You are not able to see 'Admin' section"
+                });
+            }
 
             var vm = this;
 

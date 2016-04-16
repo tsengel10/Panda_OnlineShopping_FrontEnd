@@ -1,13 +1,44 @@
 //Application name and array of dependencies ...
 angular.module("panda", ["ui.router", "ngMaterial"])
     .constant("backEndBaseUrl", "http://localhost:8080/my_project")
-    .config(function($mdThemingProvider, $stateProvider) {
+    .config(function($mdThemingProvider, $stateProvider, $httpProvider) {
+
+        $httpProvider.interceptors.push('httpRequestInterceptor');
 
         $mdThemingProvider.theme("default")
             .primaryPalette("teal")
             .accentPalette("orange");
 
+        window.location = "#/";
+
         $stateProvider
+            .state("/", {
+                url: "/",
+                templateUrl: "components/main/main_view.html",
+                controller: "mainController as vm",
+                params: {
+                    redirect_message: null
+                }
+            })
+            .state("logout", {
+                url: "/logout",
+                controller: "logoutController as vm"
+            })
+            .state("login", {
+                url: "/login",
+                templateUrl: "components/authentication/login.html",
+                controller: "authenticationController as vm"
+            })
+            .state("customer", {
+                url: "/customer",
+                templateUrl: "components/main/customer/customer_view.html",
+                controller: "customerController as vm"
+            })
+            .state("vendor", {
+                url: "/vendor",
+                templateUrl: "components/main/vendor/vendor_view.html",
+                controller: "vendorController as vm"
+            })
             .state("admin", {
                 url: "/admin",
                 templateUrl: "components/admin/admin_actions.html",

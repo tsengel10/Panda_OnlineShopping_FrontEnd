@@ -1,0 +1,12 @@
+<h1>Login Page</h1>
+<form>
+    <label for="userName">User name</label>
+    <input id="userName" type="text" ng-model="vm.user.username">
+    <label for="password">Password</label>
+    <input for="password" type="password" ng-model="vm.user.password">
+    <br/>
+    <br/>
+    <br/>
+    <button type="submit" class="btn btn-success" ng-click="vm.login(vm.user)">Submit</button>
+    <button class="btn btn-warning" ng-click="vm.cancelLogin()">Cancel</button>
+</form>

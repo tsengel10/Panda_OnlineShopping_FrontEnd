@@ -15,7 +15,11 @@
     <script src="node_modules/angular-route/angular-route.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.10.0/lodash.min.js"></script>
     <script src="app.js"></script>
+    <!-- Factories -->
     <script src="components/admin/admin_factory.js"></script>
+    <script src="components/authentication/authentication_factory.js"></script>
+    <script src="components/authentication/user_factory.js"></script>
+    <!-- Admin actions -->
     <script src="components/admin/admin_actions_controller.js"></script>
     <!-- ADMIN - MANAGE ADMINS INCLUDES-->
     <script src="components/admin/manage_admins/admins_controller.js"></script>
@@ -31,10 +35,21 @@
     <script src="components/admin/manage_customers/new/customer_new_controller.js"></script>
     <script src="components/admin/manage_customers/new_address/customer_new_address_controller.js"></script>
     <script src="components/admin/manage_customers/edit/customer_edit_controller.js"></script>
+    <!-- Authentication includes-->
+    <script src="components/authentication/authentication_controller.js"></script>
+    <script src="components/authentication/logout_controller.js"></script>
+    <!-- interceptors-->
+    <script src="components/authentication/http_request_interceptor.js"></script>
+    <!-- Main controller-->
+    <script src="components/main/main_controller.js"></script>
+    <script src="components/main/customer/customer_controller.js"></script>
+    <script src="components/main/vendor/vendor_controller.js"></script>
 </head>
 
 <body>
     <md-button href="#/admin">Go get admin page</md-button>
+    <md-button href="#/login" ng-if="!isLoggedIn">Login</md-button>
+    <md-button href="#/logout" ng-if="isLoggedIn">Logout</md-button>
     <ui-view></ui-view>
 </body>
 
