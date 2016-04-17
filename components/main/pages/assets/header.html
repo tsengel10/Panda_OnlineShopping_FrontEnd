@@ -1,0 +1,9 @@
+<md-content>
+    <div layout="row" layout-align="end center">
+        <md-button href="#/login" ng-if="!isLoggedIn">Login/Register</md-button>
+        <div ng-if="isLoggedIn">
+            Hello <span>{{ userObj.username }}!</span>
+            <md-button href="#/logout">Logout</md-button>
+        </div>
+    </div>
+</md-content>

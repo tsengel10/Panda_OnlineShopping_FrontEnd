@@ -10,6 +10,20 @@ angular.module("panda")
 
             $timeout(function() {
                 $mdSidenav("left").open();
+
+                if (!$state.params.customer) {
+                    if ($state.params.id) {
+                        adminFactory.getCustomer($state.params.id)
+                            .then(function(customer) {
+                                vm.customer = customer.data;
+                            }, function() {
+                                showToast("Cannot find customer of ID : " + $state.params.id)
+                                $state.go("admin.manage_customers");
+                            });
+                    } else
+                        $state.go("admin.manage_customers");
+                }
+
             }, 500);
 
             $scope.$watch("vm.sideNavOpen", function(sideNav) {

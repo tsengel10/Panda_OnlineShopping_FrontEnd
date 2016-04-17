@@ -3,16 +3,12 @@
         <h1 class="md-toolbar-tools">Edit Vendor</h1>
     </md-toolbar>
     <md-content layout-padding>
-        <form>
+        <form name="editVendorForm">
             <p>Credential:
                 <div style="padding-left: 50px">
                     <md-input-container>
                         <label for="username">Username</label>
-                        <input type="text" id="username" ng-model="vm.vendor.username" />
-                    </md-input-container>
-                    <md-input-container>
-                        <label for="password">Password</label>
-                        <input type="text" id="password" ng-model="vm.vendor.password" />
+                        <input type="text" id="username" ng-model="vm.vendor.username" ng-required="true" ng-minlength="3" ng-maxlength="30" />
                     </md-input-container>
                 </div>
             </p>
@@ -20,23 +16,31 @@
                 <div style="padding-left: 50px">
                     <md-input-container>
                         <label for="vname">Vendor Name</label>
-                        <input type="text" id="vname" ng-model="vm.vendor.vendorName" />
+                        <input type="text" id="vname" ng-model="vm.vendor.vendorName" ng-required="true" ng-minlength="3" ng-maxlength="30" />
                     </md-input-container>
                     <md-input-container>
                         <label for="vcode">Vendor Code</label>
-                        <input type="text" id="vcode" ng-model="vm.vendor.vendorCode" />
+                        <input type="text" id="vcode" ng-model="vm.vendor.vendorCode" ng-required="true" ng-minlength="3" ng-maxlength="15" />
                     </md-input-container>
                     <md-input-container>
                         <label for="img_link">Image link</label>
-                        <input type="text" id="img_link" ng-model="vm.vendor.image_link" />
+                        <input type="text" id="img_link" ng-model="vm.vendor.image_link" ng-required="true" />
                     </md-input-container>
+                    <md-slider-container>
+                        <label for="sizeRange">Allocated size (GB)</label>
+                        <md-slider flex min="50" max="500" step="5" ng-model="vm.vendor.capacity_size" id="sizeRange" aria-label="sizeRange">
+                        </md-slider>
+                        <md-input-container>
+                            <input flex type="number" ng-model="vm.vendor.capacity_size" aria-label="sizeRange">
+                        </md-input-container>
+                    </md-slider-container>
                 </div>
             </p>
             <p>Contact info:
                 <div style="padding-left: 50px">
                     <md-input-container>
                         <label for="email">Email</label>
-                        <input type="text" id="email" ng-model="vm.vendor.email" />
+                        <input type="text" id="email" ng-model="vm.vendor.email" ng-required="true" ng-minlength="5" ng-maxlength="30" />
                     </md-input-container>
                     <md-input-container>
                         <label for="phone">Phone</label>
@@ -45,9 +49,9 @@
                 </div>
             </p>
             <div>
-                <md-button class="md-primary" ng-click="vm.saveEditVendor(vm.vendor)">Save Edit</md-button>
+                <md-button class="md-primary" ng-disabled="!editVendorForm.$valid" ng-click="vm.saveEditVendor(vm.vendor)">Save Edit</md-button>
                 <md-button class="md-warn" ng-click="vm.closeSideBar()">Cancel</md-button>
-                <pre>{{ vm.vendor | json }}</pre>
+                <!-- <pre>{{ vm.vendor | json }}</pre> -->
             </div>
         </form>
     </md-content>

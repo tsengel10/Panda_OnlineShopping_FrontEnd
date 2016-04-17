@@ -3,11 +3,11 @@
         <h1 class="md-toolbar-tools">Add address to Customer</h1>
     </md-toolbar>
     <md-content layout-padding>
-        <form>
+        <form name="addNewAddressCustomer">
             <div style="padding-left: 50px">
                 <md-input-container>
                     <label for="address_1">Address 1</label>
-                    <input type="text" id="address_1" ng-model="vm.address.address_1" />
+                    <input type="text" id="address_1" ng-model="vm.address.address_1" ng-required="true" />
                 </md-input-container>
                 <md-input-container>
                     <label for="address_2">Address 2</label>
@@ -15,20 +15,20 @@
                 </md-input-container>
                 <md-input-container>
                     <label for="city">City</label>
-                    <input type="text" id="city" ng-model="vm.address.city" />
+                    <input type="text" id="city" ng-model="vm.address.city" ng-required="true" ng-minlength="3" />
                 </md-input-container>
                 <md-input-container>
                     <label for="state">State</label>
-                    <input type="text" id="state" ng-model="vm.address.state" />
+                    <input type="text" id="state" ng-model="vm.address.state" g-required="true" ng-minlength="2" ng-maxlength="2" />
                 </md-input-container>
                 <md-input-container>
                     <label for="zip">Zip</label>
-                    <input type="text" id="zip" ng-model="vm.address.zip" />
+                    <input type="number" id="zip" ng-model="vm.address.zip" ng-minlength="5" ng-maxlength="5" ng-required="true" />
                 </md-input-container>
                 <md-input-container>
                     <label for="address_type">Address type</label>
                     <md-select id="address_type" ng-model="vm.address.address_type">
-                        <md-option value="billing">
+                        <md-option value="billing" ng-selected="true">
                             Billing
                         </md-option>
                         <md-option value="shipping">
@@ -38,7 +38,7 @@
                 </md-input-container>
             </div>
             <div>
-                <md-button class="md-primary" ng-click="vm.saveCustomerAddress(vm.address)">Save</md-button>
+                <md-button class="md-primary" ng-disabled="!addNewAddressCustomer.$valid" ng-click="vm.saveCustomerAddress(vm.address)">Save</md-button>
                 <md-button class="md-warn" ng-click="vm.closeSideBar()">Cancel</md-button>
                 <pre>{{ vm.vendor | json }}</pre>
             </div>

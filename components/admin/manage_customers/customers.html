@@ -1,4 +1,4 @@
-<ui-view></ui-view>
+<div ui-view="actions"></div>
 <md-toolbar>
     <div class="md-toolbar-tools">
         <p><strong>{{ vm.adminActionTitle }}</strong></p>
@@ -42,7 +42,6 @@
                                 Credential info
                                 <div style="padding-left:50px;">
                                     <p>Username: {{ customer.username }}</p>
-                                    <p>Password: {{ customer.password }}</p>
                                 </div>
                             </p>
                             <p>

@@ -4,7 +4,6 @@ angular.module("panda")
         function($state, $scope, $mdSidenav, $mdDialog, $mdToast, $timeout) {
 
             var vm = this;
-            vm.vendor;
             vm.closeSideBar = closeSideBar;
             vm.saveVendor = saveVendor;
             vm.vendor = $state.params.vendor;

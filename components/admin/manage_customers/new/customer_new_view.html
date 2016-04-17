@@ -3,28 +3,37 @@
         <h1 class="md-toolbar-tools">Add a Customer</h1>
     </md-toolbar>
     <md-content layout-padding>
-        <form>
+        <form name="addCustomerForm">
             <p>Credential:
                 <div style="padding-left: 50px">
                     <md-input-container>
                         <label for="username">Username</label>
-                        <input type="text" id="username" ng-model="vm.customer.username" />
+                        <input type="text" id="username" ng-model="vm.customer.username" ng-required="true" ng-minlength="3" ng-maxlength="30" />
                     </md-input-container>
                     <md-input-container>
                         <label for="password">Password</label>
-                        <input type="text" id="password" ng-model="vm.customer.password" />
+                        <input name="customerPasswordField" type="password" id="password" ng-model="vm.customer.password" ng-model="vm.customer.password" ng-required="true" ng-minlength="3" ng-maxlength="15" />
                     </md-input-container>
+                    <md-input-container>
+                        <label for="confirmPassword">Confirm password:</label>
+                        <input type="password" id="confirmPassword" ng-model="vm.customer.confirmPassword" ng-required="true" match="vm.customer.password" name="customerPasswordConfirmField" />
+                    </md-input-container>
+                    <md-container>
+                        <div ng-show="addCustomerForm.customerPasswordConfirmField.$error.match">
+                            <md-icon class="mdi mdi-close" style="color:red;"></md-icon>
+                            Passwords do not match!</div>
+                    </md-container>
                 </div>
             </p>
             <p>Customer info:
                 <div style="padding-left: 50px">
                     <md-input-container>
                         <label for="fname">First Name</label>
-                        <input type="text" id="fname" ng-model="vm.customer.firstName" />
+                        <input type="text" id="fname" ng-model="vm.customer.firstName" ng-required="true" ng-minlength="3" ng-maxlength="30" />
                     </md-input-container>
                     <md-input-container>
                         <label for="lname">Last Name</label>
-                        <input type="text" id="lname" ng-model="vm.customer.lastName" />
+                        <input type="text" id="lname" ng-model="vm.customer.lastName" ng-required="true" ng-minlength="3" ng-maxlength="30" />
                     </md-input-container>
                 </div>
             </p>
@@ -32,7 +41,7 @@
                 <div style="padding-left: 50px">
                     <md-input-container>
                         <label for="email">Email</label>
-                        <input type="text" id="email" ng-model="vm.customer.email" />
+                        <input type="email" id="email" ng-model="vm.customer.email" ng-required="true" ng-minlength="5" ng-maxlength="30" />
                     </md-input-container>
                     <md-input-container>
                         <label for="phone">Phone</label>
@@ -41,9 +50,9 @@
                 </div>
             </p>
             <div>
-                <md-button class="md-primary" ng-click="vm.saveCustomer(vm.customer)">Save</md-button>
+                <md-button class="md-primary" ng-disabled="addCustomerForm.customerPasswordConfirmField.$error.match || !addCustomerForm.$valid" ng-click="vm.saveCustomer(vm.customer)">Save</md-button>
                 <md-button class="md-warn" ng-click="vm.closeSideBar()">Cancel</md-button>
-                <pre>{{ vm.vendor | json }}</pre>
+                <!-- <pre>{{ vm.vendor | json }}</pre> -->
             </div>
         </form>
     </md-content>

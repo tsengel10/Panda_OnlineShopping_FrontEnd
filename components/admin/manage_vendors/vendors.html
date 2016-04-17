@@ -1,4 +1,4 @@
-<ui-view></ui-view>
+<div ui-view="actions"></div>
 <md-toolbar>
     <div class="md-toolbar-tools">
         <p><strong>{{ vm.adminActionTitle }}</strong></p>
@@ -42,7 +42,6 @@
                                 Credential info
                                 <div style="padding-left:50px;">
                                     <p>Username: {{ vendor.username }}</p>
-                                    <p>Password: {{ vendor.password }}</p>
                                 </div>
                             </p>
                             <p>
@@ -50,6 +49,7 @@
                                 <div style="padding-left:50px;">
                                     <p>Name: {{ vendor.vendorName }}</p>
                                     <p>Code: {{ vendor.vendorCode }}</p>
+                                    <p>Capacity: {{ vendor.capacity_size }} GB</p>
                                     <p>Type: Vendor</p>
                                 </div>
                             </p>

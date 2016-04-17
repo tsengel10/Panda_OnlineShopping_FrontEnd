@@ -6,10 +6,23 @@ angular.module("panda")
             var vm = this;
             vm.closeSideBar = closeSideBar;
             vm.saveEditVendor = saveEditVendor;
+            vm.vid = $state.params.id;
             vm.vendor = $state.params.vendor;
 
             $timeout(function() {
                 $mdSidenav("left").open();
+                if (!$state.params.vendor) {
+                    if ($state.params.id) {
+                        adminFactory.getVendor($state.params.id)
+                            .then(function(vendor) {
+                                vm.vendor = vendor.data;
+                            }, function() {
+                                showToast("Cannot find vendor of ID : " + $state.params.id)
+                                $state.go("admin.manage_vendors");
+                            });
+                    } else
+                        $state.go("admin.manage_vendors");
+                }
             }, 500);
 
             $scope.$watch("vm.sideNavOpen", function(sideNav) {
@@ -20,6 +33,15 @@ angular.module("panda")
                         });
                 }
             });
+
+            function showToast(message) {
+                $mdToast.show(
+                    $mdToast.simple()
+                    .content(message)
+                    .position("top, right")
+                    .hideDelay(3000)
+                );
+            }
 
             function closeSideBar() {
                 vm.sideNavOpen = false;

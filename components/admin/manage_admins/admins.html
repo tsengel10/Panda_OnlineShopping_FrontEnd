@@ -1,4 +1,4 @@
-<ui-view></ui-view>
+<div ui-view="actions"></div>
 <md-toolbar>
     <div class="md-toolbar-tools">
         <p><strong>{{ vm.adminActionTitle }}</strong></p>
@@ -34,10 +34,6 @@
                     <p>
                         <md-icon class="mdi mdi-account-circle"></md-icon>
                         {{ admin.username }}
-                    </p>
-                    <p>
-                        <md-icon class="mdi mdi-account-key"></md-icon>
-                        {{ admin.password }}
                     </p>
                     <p>
                         <md-icon class="mdi mdi-email"></md-icon>

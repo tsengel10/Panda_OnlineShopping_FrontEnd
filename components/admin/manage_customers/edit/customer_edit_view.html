@@ -3,16 +3,12 @@
         <h1 class="md-toolbar-tools">Edit Customer</h1>
     </md-toolbar>
     <md-content layout-padding>
-        <form>
+        <form name="editCustomerForm">
             <p>Credential:
                 <div style="padding-left: 50px">
                     <md-input-container>
                         <label for="username">Username</label>
-                        <input type="text" id="username" ng-model="vm.customer.username" />
-                    </md-input-container>
-                    <md-input-container>
-                        <label for="password">Password</label>
-                        <input type="text" id="password" ng-model="vm.customer.password" />
+                        <input type="text" id="username" ng-model="vm.customer.username" ng-required="true" ng-minlength="3" ng-maxlength="30" />
                     </md-input-container>
                 </div>
             </p>
@@ -20,11 +16,11 @@
                 <div style="padding-left: 50px">
                     <md-input-container>
                         <label for="fname">First Name</label>
-                        <input type="text" id="fname" ng-model="vm.customer.firstName" />
+                        <input type="text" id="fname" ng-model="vm.customer.firstName" g-required="true" ng-minlength="3" ng-maxlength="30" />
                     </md-input-container>
                     <md-input-container>
                         <label for="lname">Last Name</label>
-                        <input type="text" id="lname" ng-model="vm.customer.lastName" />
+                        <input type="text" id="lname" ng-model="vm.customer.lastName" g-required="true" ng-minlength="3" ng-maxlength="30" />
                     </md-input-container>
                 </div>
             </p>
@@ -32,7 +28,7 @@
                 <div style="padding-left: 50px">
                     <md-input-container>
                         <label for="email">Email</label>
-                        <input type="text" id="email" ng-model="vm.customer.email" />
+                        <input type="text" id="email" ng-model="vm.customer.email" ng-required="true" ng-minlength="5" ng-maxlength="30" />
                     </md-input-container>
                     <md-input-container>
                         <label for="phone">Phone</label>
@@ -41,7 +37,7 @@
                 </div>
             </p>
             <div>
-                <md-button class="md-primary" ng-click="vm.saveEditCustomer(vm.customer)">Save Edit</md-button>
+                <md-button class="md-primary" ng-disabled="!editCustomerForm.$valid" ng-click="vm.saveEditCustomer(vm.customer)">Save Edit</md-button>
                 <md-button class="md-warn" ng-click="vm.closeSideBar()">Cancel</md-button>
                 <pre>{{ vm.vendor | json }}</pre>
             </div>

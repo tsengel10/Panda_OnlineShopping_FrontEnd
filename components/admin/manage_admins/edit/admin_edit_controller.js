@@ -10,6 +10,20 @@ angular.module("panda")
 
             $timeout(function() {
                 $mdSidenav("left").open();
+
+                if (!$state.params.admin) {
+                    if ($state.params.id) {
+                        adminFactory.getAdmin($state.params.id)
+                            .then(function(admin) {
+                                vm.admin = admin.data;
+                            }, function() {
+                                showToast("Cannot find admin of ID : " + $state.params.id)
+                                $state.go("admin.manage_admins");
+                            });
+                    } else
+                        $state.go("admin.manage_admins");
+                }
+
             }, 500);
 
             $scope.$watch("vm.sideNavOpen", function(sideNav) {
@@ -20,6 +34,15 @@ angular.module("panda")
                         });
                 }
             });
+
+            function showToast(message) {
+                $mdToast.show(
+                    $mdToast.simple()
+                    .content(message)
+                    .position("top, right")
+                    .hideDelay(3000)
+                );
+            }
 
             function closeSideBar() {
                 vm.sideNavOpen = false;

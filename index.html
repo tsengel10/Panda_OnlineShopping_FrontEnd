@@ -14,6 +14,7 @@
     <script src="node_modules/angular-material/angular-material.min.js"></script>
     <script src="node_modules/angular-route/angular-route.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.10.0/lodash.min.js"></script>
+    <script src="node_modules/angular-validation-match/dist/angular-validation-match.min.js"></script>
     <script src="app.js"></script>
     <!-- Factories -->
     <script src="components/admin/admin_factory.js"></script>
@@ -41,16 +42,14 @@
     <!-- interceptors-->
     <script src="components/authentication/http_request_interceptor.js"></script>
     <!-- Main controller-->
+    <script src="components/main/pages/assets/header_controller.js"></script>
     <script src="components/main/main_controller.js"></script>
     <script src="components/main/customer/customer_controller.js"></script>
     <script src="components/main/vendor/vendor_controller.js"></script>
 </head>
 
 <body>
-    <md-button href="#/admin">Go get admin page</md-button>
-    <md-button href="#/login" ng-if="!isLoggedIn">Login</md-button>
-    <md-button href="#/logout" ng-if="isLoggedIn">Logout</md-button>
-    <ui-view></ui-view>
+    <div ui-view=""></div>
 </body>
 
 </html>
