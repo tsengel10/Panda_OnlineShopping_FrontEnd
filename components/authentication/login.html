@@ -1,12 +1,23 @@
-<h1>Login Page</h1>
-<form>
-    <label for="userName">User name</label>
-    <input id="userName" type="text" ng-model="vm.user.username">
-    <label for="password">Password</label>
-    <input for="password" type="password" ng-model="vm.user.password">
-    <br/>
-    <br/>
-    <br/>
-    <md-button type="submit" class="md-raised md-primary" ng-click="vm.login(vm.user)">Submit</md-button>
-    <md-button class="md-raised md-warn" ng-click="vm.cancelLogin()">Cancel</md-button>
-</form>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h1>Login Page</h1>
+        <form class="aa-login-form" action="">
+            <label for="userName">User name<span>*</span></label>
+            <input id="userName" type="text" ng-model="vm.user.username" placeholder="Username">
+            <label for="password">Password<span>*</span></label>
+            <input for="password" type="password" ng-model="vm.user.password" placeholder="Password">
+            <br/>
+            <br/>
+            <br/>
+            <md-button type="submit" class="aa-browse-btn" ng-click="vm.login(vm.user)">Submit</md-button>
+            <md-button class="aa-browse-btn" ng-click="vm.cancelLogin()">Cancel</md-button>
+            <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
+        </form>
+
+        <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
+        <div class="aa-register-now">
+            Don't have an account?<a href="#/register">Register now!</a>
+        </div>
+    </div>
+</div>
