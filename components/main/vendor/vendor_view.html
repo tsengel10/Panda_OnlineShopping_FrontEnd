@@ -1,1 +1,82 @@
-<h1>Vendor view</h1>
+<div ui-view="actions"></div>
+<div layout="row">
+    <div flex>Vendor product goes here</div>
+    <div flex>
+        <md-card class="vendor" flex="22">
+            <md-card-content>
+                <div class="vendor-info" ng-show="!showSimple">
+                    <img ng-src="{{ vendor.image_link }}" width="150">
+                    <p>
+                        Vendor ID: {{ vm.vendor.userid }}
+                    </p>
+                    <p>Vendor name:
+                        <span class="md-title">{{ vm.vendor.username }}</span></p>
+                    <p>Vendor code:
+                        <span class="md-title">{{ vm.vendor.vendorCode }}</span></p>
+                </div>
+                <div class="vendor-contact" ng-show="showSimple">
+                    <img ng-src="{{ vm.vendor.image_link }}" width="150">
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="General">
+                            <p>
+                                <md-icon class="mdi mdi-account"></md-icon>
+                                Credential info
+                                <div style="padding-left:50px;">
+                                    <p>Username: {{ vm.vendor.username }}</p>
+                                </div>
+                            </p>
+                            <p>
+                                <md-icon class="mdi mdi-account-star-variant"></md-icon>Info
+                                <div style="padding-left:50px;">
+                                    <p>Name: {{ vm.vendor.vendorName }}</p>
+                                    <p>Code: {{ vm.vendor.vendorCode }}</p>
+                                    <p>Capacity: {{ vm.vendor.capacity_size }} GB</p>
+                                    <p>Type: Vendor</p>
+                                </div>
+                            </p>
+                            <p>
+                                <md-icon class="mdi mdi-phone"></md-icon>Contact info
+                                <div style="padding-left:50px;">
+                                    <p>Email: {{ vm.vendor.email }}</p>
+                                    <p>Phone: {{ vm.vendor.phone }}</p>
+                                </div>
+                            </p>
+                        </md-tab>
+                        <md-tab label="Address(s)">
+                            <p>
+                                Address(s) info
+                            </p>
+                            <md-content ng-repeat="address in vm.vendor.addresses track by $index">
+                                <p>
+                                    <md-icon class="mdi mdi-truck"></md-icon>
+                                    {{ $index+1 }}.
+                                    <div style="padding-left:50px;">
+                                        <p>Address 1: {{ address.address_1 }}</p>
+                                        <p>Address 2: {{ address.address_2 }}</p>
+                                        <p>City: {{ address.city }}</p>
+                                        <p>State: {{ address.state }}</p>
+                                        <p>Zip: {{ address.zip }}</p>
+                                        <p>Type: {{ address.address_type }}</p>
+                                    </div>
+                                </p>
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </div>
+                <div layout="row">
+                    <md-button class="md-primary" ng-click="showSimple = true" ng-show="!showSimple">Details</md-button>
+                    <md-button class="md-primary" ng-click="showSimple = false" ng-show="showSimple">Simple</md-button>
+                    <md-button class="md-warn" ng-click="showActions = true" ng-show="!showActions">Actions</md-button>
+                    <md-button class="md-warn" ng-click="showActions = false" ng-show="showActions">Close</md-button>
+                </div>
+                <div class="vendor-vendor" ng-if="showActions">
+                    <h3>Action(s)</h3>
+                    <div layout="row">
+                        <md-button class="md-warn" ng-click="vm.addVendorAddress(vm.vendor)">Add address</md-button>
+                        <md-button class="md-warn" ng-click="vm.editVendor(vm.vendor)">Edit</md-button>
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+</div>

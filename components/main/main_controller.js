@@ -9,8 +9,6 @@ angular.module("panda")
                 showToast(vm.redirect_message);
             }
 
-            console.log("IM HERE YOU NOOB");
-
             function showToast(message) {
                 $mdToast.show(
                     $mdToast.simple()

@@ -9,7 +9,7 @@ angular.module("panda", ["ui.router", "ngMaterial", "validation.match"])
             .primaryPalette("teal")
             .accentPalette("orange");
 
-        window.location = "#/";
+        //window.location = "#/";
 
         $stateProvider
             .state('root', {
@@ -37,11 +37,11 @@ angular.module("panda", ["ui.router", "ngMaterial", "validation.match"])
                 views: {
                     'main': {
                         templateUrl: 'components/main/pages/main.html',
-                        controller: "mainController as vm",
-                        params: {
-                            redirect_message: null
-                        }
+                        controller: "mainController as vm"
                     }
+                },
+                params: {
+                    redirect_message: null
                 }
             })
             .state("logout", {
@@ -98,11 +98,11 @@ angular.module("panda", ["ui.router", "ngMaterial", "validation.match"])
                 views: {
                     'actions': {
                         templateUrl: "components/admin/manage_admins/edit/admin_edit_view.html",
-                        controller: "editAdminController as vm",
-                        params: {
-                            admin: null
-                        }
+                        controller: "editAdminController as vm"
                     }
+                },
+                params: {
+                    admin: null
                 }
             })
             // Manage vendors state
@@ -129,11 +129,11 @@ angular.module("panda", ["ui.router", "ngMaterial", "validation.match"])
                 views: {
                     'actions': {
                         templateUrl: "components/admin/manage_vendors/new_address/vendor_new_address_view.html",
-                        controller: "newVendorAddressController as vm",
-                        params: {
-                            vendor: null
-                        }
+                        controller: "newVendorAddressController as vm"
                     }
+                },
+                params: {
+                    vendor: null
                 }
             })
             .state("admin.manage_vendors.edit", {
@@ -141,11 +141,11 @@ angular.module("panda", ["ui.router", "ngMaterial", "validation.match"])
                 views: {
                     'actions': {
                         templateUrl: "components/admin/manage_vendors/edit/vendor_edit_view.html",
-                        controller: "editVendorController as vm",
-                        params: {
-                            vendor: null
-                        }
+                        controller: "editVendorController as vm"
                     }
+                },
+                params: {
+                    vendor: null
                 }
             })
             // //Manage customers state
@@ -172,11 +172,11 @@ angular.module("panda", ["ui.router", "ngMaterial", "validation.match"])
                 views: {
                     'actions': {
                         templateUrl: "components/admin/manage_customers/new_address/customer_new_address_view.html",
-                        controller: "newCustomerAddressController as vm",
-                        params: {
-                            customer: null
-                        }
+                        controller: "newCustomerAddressController as vm"
                     }
+                },
+                params: {
+                    customer: null
                 }
             })
             .state("admin.manage_customers.edit", {
@@ -184,11 +184,11 @@ angular.module("panda", ["ui.router", "ngMaterial", "validation.match"])
                 views: {
                     'actions': {
                         templateUrl: "components/admin/manage_customers/edit/customer_edit_view.html",
-                        controller: "editCustomerController as vm",
-                        params: {
-                            customer: null
-                        }
+                        controller: "editCustomerController as vm"
                     }
+                },
+                params: {
+                    customer: null
                 }
             })
             //Customer related states goes here
@@ -207,13 +207,36 @@ angular.module("panda", ["ui.router", "ngMaterial", "validation.match"])
                 parent: 'root',
                 url: "/vendor",
                 views: {
-                    'main': {
+                    "main": {
                         templateUrl: "components/main/vendor/vendor_view.html",
-                        controller: "vendorController as vm"
+                        controller: "vendorController as vm",
                     }
                 }
             })
-
+            .state("vendor.new_address", {
+                url: "/new_address",
+                views: {
+                    'actions': {
+                        templateUrl: "components/main/vendor/new_address/vendor_new_address_view.html",
+                        controller: "newOwnVendorAddressController as vm"
+                    }
+                },
+                params: {
+                    vendor: null
+                }
+            })
+            .state("vendor.edit", {
+                url: "/edit",
+                views: {
+                    'actions': {
+                        templateUrl: "components/main/vendor/edit/vendor_edit_view.html",
+                        controller: "editVendorOwnController as vm"
+                    }
+                },
+                params: {
+                    vendor: null
+                }
+            })
 
 
 

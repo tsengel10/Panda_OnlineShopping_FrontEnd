@@ -8,10 +8,7 @@ angular.module("panda")
             vm.login = login;
             vm.cancelLogin = cancelLogin;
 
-            console.log("Im here...");
-
             function login(user) {
-                console.log("about to do login()");
                 authenticationFactory.authenticateUser(user)
                     .then(function(response) {
                         console.log("Auth success with code: " + response.status);

@@ -1,8 +1,6 @@
 angular.module("panda")
     .controller("customerController", ["$rootScope", "$state", "$scope", "$http", "authenticationFactory", "userFactory",
-        function($rootScope, $state, $scope, $http, authenticationFactory, userFactory) {
-
-            console.log("Inside Customer controller");
+        function($rootScope, $state, $scope, $http, authenticationFactory, userFactory) {F
 
             if (!$rootScope.userObj || $rootScope.userObj.usertype != 10) {
                 $state.go("/", {

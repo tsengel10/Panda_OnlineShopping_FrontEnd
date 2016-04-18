@@ -11,7 +11,7 @@ angular.module("panda")
             vm.adminActionTitle = "Manage Vendors";
             vm.vendors;
             vm.vendor;
-            
+
 
             adminFactory.getVendors()
                 .then(function(vendors) {
