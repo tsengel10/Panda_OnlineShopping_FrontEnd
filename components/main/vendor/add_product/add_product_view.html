@@ -1,0 +1,103 @@
+<md-dialog aria-label="Add product" ng-cloak flex="50">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Add product</h2>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-tabs>
+                    <md-tab label="Category info">
+                        <div layout=row>
+                            </br>
+                            </br>
+                            <md-input-container>
+                                <label for="catId">Category</label>
+                                <md-select id="catId" ng-model="vm.product.categoryId">
+                                    <md-option ng-repeat="cat in vm.categories" ng-value="{{ cat.categoryId }}">
+                                        {{ cat.categoryName }}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-button ng-click="showAddCat = true">
+                                <md-icon class="mdi mdi-plus-circle"></md-icon>Add category
+                            </md-button>
+                        </div>
+                        <md-input-container>
+                            <label for="type">Type</label>
+                            <md-select id="type" ng-model="vm.product.productId">
+                                <md-option ng-repeat="prod in vm.products" ng-value="{{ prod.productId }}">
+                                    {{ prod.productName }}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                        <br/>
+                        <div ng-show="showAddCat">
+                            <md-input-container>
+                                <label for="newCategory">Enter category here...</label>
+                                <input type="text" id="newCategory" ng-model="vm.newCat.categoryName" ng-required="true" />
+                                <md-button class="md-primary" ng-click="vm.addNewCat(vm.newCat); showAddCat=false;">Add</md-button>
+                                <md-button class="md-warn" ng-click="showAddCat = false;">Cancel</md-button>
+                            </md-input-container>
+                        </div>
+                    </md-tab>
+                    <md-tab label="Product info">
+                        <md-input-container>
+                            <label for="productName">Product name</label>
+                            <input type="text" id="productName" ng-model="vm.product.productName" ng-required="true" />
+                        </md-input-container>
+                        <md-input-container>
+                            <label for="productDescription">Product description</label>
+                            <input type="text" id="productDescription" ng-model="vm.product.productDescription" ng-required="true" />
+                        </md-input-container>
+                        </br>
+                        <md-input-container>
+                            <label for="price">Price</label>
+                            <input type="text" id="price" ng-model="vm.product.price" ng-required="true" />
+                        </md-input-container>
+                        <md-input-container>
+                            <label for="quantity">Quantity</label>
+                            <input type="text" id="quantity" ng-model="vm.product.quantity" ng-required="true" />
+                        </md-input-container>
+                        </br>
+                        <md-input-container>
+                            <label for="weight">Weight</label>
+                            <input type="number" id="weight" ng-model="vm.product.weight" ng-required="true" />
+                        </md-input-container>
+                        <md-input-container>
+                            <label for="sprice">Shipping price</label>
+                            <input type="number" id="sprice" ng-model="vm.product.shippingPrice" ng-required="true" />
+                        </md-input-container>
+                        </br>
+                    </md-tab>
+                    <md-tab label="Pictures">
+                        <md-input-container>
+                            <label for="img_1">Image Link 1</label>
+                            <input type="text" id="img_1" ng-model="vm.img[0]" ng-required="true" />
+                        </md-input-container>
+                        </br>
+                        <md-input-container>
+                            <label for="img_2">Image Link 2</label>
+                            <input type="text" id="img_2" ng-model="vm.img[1]" ng-required="true" />
+                        </md-input-container>
+                        </br>
+                        <md-input-container>
+                            <label for="img_3">Image Link 3</label>
+                            <input type="text" id="img_3" ng-model="vm.img[2]" ng-required="true" />
+                        </md-input-container>
+                    </md-tab>
+                </md-tabs>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button class="md-primary" ng-click="vm.addProduct(vm.product, vm.img)">
+                Add Product
+            </md-button>
+            <md-button ng-click="vm.cancel()">
+                Close
+            </md-button>
+        </md-dialog-actions>
+    </form>
+    <pre>{{ vm.product | json }}</pre>
+</md-dialog>

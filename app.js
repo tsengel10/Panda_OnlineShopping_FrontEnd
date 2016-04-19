@@ -237,6 +237,18 @@ angular.module("panda", ["ui.router", "ngMaterial", "validation.match"])
                     vendor: null
                 }
             })
+            .state("vendor.addProduct", {
+                url: "/addProduct",
+                views: {
+                    'actions': {
+                        //templateUrl: "components/main/vendor/add_product/add_product_view.html",
+                        controller: "vendorAddProduct as vm"
+                    }
+                },
+                params: {
+                    vendor: null
+                }
+            })
 
 
 

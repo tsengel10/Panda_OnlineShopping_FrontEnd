@@ -1,0 +1,25 @@
+<md-dialog aria-label="asdas" ng-cloak flex="50">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{ vm.data.product.productName }}</h2>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <img ng-src="{{ vm.data.pictures[0].pictureLink }}" width="150px" />
+                <p>Category: <span class="md-title">{{ vm.data.category.categoryName }}</span></p>
+                <p>Category Description: <span class="md-title">{{ vm.data.category.categoryDescription }}</span></p>
+                <p>Created Date: <span class="md-title">{{ vm.data.createdDate }}</span></p>
+                <p>Price: <span class="md-title">{{ vm.data.price }}$</span></p>
+                <p>Shipping Price: <span class="md-title">{{ vm.data.shippingPrice }}$</span>
+                </p>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="vm.cancel()">
+                Close
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
